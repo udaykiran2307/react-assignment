@@ -5,8 +5,8 @@
 * `id`: UUID, a unique identifier
 * `area`: String, an identifier for an area, one of: 'Helsinki', 'Tampere', 'Turku'
 * `booked`: Boolean, true if booked, false if not booked
-* `startTime`: Int, Unix epoch timestamp, the starting time for the shift
-* `endTime`: Int, Unix epoch timestamp, the ending time for the shift
+* `startTime`: Integer, Unix epoch timestamp, the starting time for the shift
+* `endTime`: Integer, Unix epoch timestamp, the ending time for the shift
 
 ## End-points
 
