@@ -17,10 +17,11 @@ function App() {
 
   return (
     <div className="App">
-      <Box display={"flex"} justifyContent={"center"}>
+      <Box display={"flex"} flexDirection={"column"} justifyContent={"center"} alignItems={'center'}>
+      <Box display={"flex"} justifyContent={"center"}sx={{ minWidth: "50vw" }}>
+        
       <Button
         variant="text"
-        
         sx={{ color: "green", textTransform: 'none' }}
         onClick={() => {
           handleButtonClick(0);
@@ -39,9 +40,9 @@ function App() {
       </Button>
       </Box>
 
-      <Box display={"flex"} justifyContent={"center"}>
-      <Card sx={{ minWidth: "50vw", minHeight: "60vw" }}>
-        <CardContent>
+     
+      <Card sx={{ minWidth: "50vw", height: "100vw", padding:'0px' }}>
+        <CardContent style={{width:'100%',padding:'0px'}}>
         {myShifts === 0 ? <MyShifts /> : <AvailableShifts />}
         </CardContent>
         <CardActions>
