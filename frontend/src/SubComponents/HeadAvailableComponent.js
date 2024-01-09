@@ -13,7 +13,7 @@ const HeadAvailableComponent = ({ date }) => {
           display: "flex",
           justifyContent: "start",
           alignItems: "center",
-          padding: "8px",
+          padding: "10px",
         }}
       >
         <h4>{date}</h4>

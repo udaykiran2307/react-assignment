@@ -1,5 +1,5 @@
 import React from "react";
-import CustomButton from "../Components/CustomButton";
+import CancelButton from "../CustomButtons/CancelButton";
 
 const MyShiftEntry = () => {
   return (
@@ -9,13 +9,14 @@ const MyShiftEntry = () => {
         display: "flex",
         padding: "8px",
         justifyContent: "space-between",
+        alignItems:'center'
       }}
     >
-      <div>
-        <div>12:00 - 14:00</div>
-        <p>Helsinki</p>
+      <div style={{paddingTop:'1rem'}}>
+        <p>12:00 - 14:00</p>
+        <p style={{ color: "#4F6C92" , marginTop:'-1rem'}}>Helsinki</p>
       </div>
-      <CustomButton type={"Cancel"} />
+      <CancelButton/>
     </div>
   );
 };

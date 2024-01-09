@@ -17,7 +17,12 @@ const HeadShiftComponent = ({ date, shifts }) => {
       <h4>
         {date}{" "}
         <span
-          style={{ fontWeight: "50px", fontSize: "11px", marginLeft: "1rem" }}
+          style={{
+            fontWeight: "50px",
+            fontSize: "11px",
+            marginLeft: "1rem",
+            color: "#4F6C92",
+          }}
         >
           {0} shifts, {4}h{" "}
         </span>

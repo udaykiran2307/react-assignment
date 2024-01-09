@@ -10,6 +10,7 @@ const CancelButton = () => {
         color: "#E2006A",
         borderColor: "#FE93B3",
         width: "6.5rem",
+        height:"2.4rem",
         borderRadius: "1rem",
         fontWeight:'bold'
       }}
@@ -18,10 +19,6 @@ const CancelButton = () => {
     </Button>
   );
 };
-
-
-
-
 
 
 

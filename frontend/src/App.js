@@ -1,13 +1,13 @@
-import logo from "./logo.svg";
+
 import "./App.css";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Button from "@mui/material/Button";
 import MyShifts from "./Components/MyShift";
 import AvailableShifts from "./Components/AvailableShifts";
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
-import { CardActions, CardContent, Typography } from "@mui/material";
-import { useTheme } from "@mui/material";
+import { CardActions, CardContent} from "@mui/material";
+
 
 function App() {
   const [shift, setShift] = useState(0);
@@ -15,7 +15,6 @@ function App() {
   const handleButtonClick = (val) => {
     setShift(val);
   };
-  const theme = useTheme();
   return (
     <div className="App">
       <div
@@ -35,6 +34,7 @@ function App() {
             display: "flex",
             justifyContent: "start",
             alignSelf: "start",
+            alignItems:'center'
           }}
         >
           <Button
