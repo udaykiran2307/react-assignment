@@ -11,14 +11,16 @@ const AvailableShiftEntry = ({status,buttonStatus}) => {
           backgroundColor: "#FFFF",
           color: "#4F6C92",
           display: "flex",
-          justifyContent: "start",
+          justifyContent: "space-between",
           alignItems: "center",
           padding: "8px",
         }}
       >
-      
+         <div>12:00-14:00</div>
+         <div>
         <div>{status}</div>
         <CustomButton type={buttonStatus}/>
+        </div> 
       </div>
     );
   };

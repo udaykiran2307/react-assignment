@@ -7,49 +7,81 @@ import AvailableShifts from "./Components/AvailableShifts";
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import { CardActions, CardContent, Typography } from "@mui/material";
+import { useTheme } from "@mui/material";
 
 function App() {
-  const [myShifts, setMyShifts] = useState(0);
+  const [shift, setShift] = useState(0);
 
   const handleButtonClick = (val) => {
-    setMyShifts(val);
+    setShift(val);
   };
-
+  const theme = useTheme();
   return (
     <div className="App">
-      <Box display={"flex"} flexDirection={"column"} justifyContent={"center"} alignItems={'center'}>
-      <Box display={"flex"} justifyContent={"center"}sx={{ minWidth: "50vw" }}>
-        
-      <Button
-        variant="text"
-        sx={{ color: "green", textTransform: 'none' }}
-        onClick={() => {
-          handleButtonClick(0);
+      <div
+        style={{
+          margin: "auto",
+          width: "50%",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "start",
+          alignItems: "center",
         }}
+        className="card"
       >
-        My shifts
-      </Button>
-      <Button
-        variant="text"
-        sx={{ color: "green",textTransform: 'none' }}
-        onClick={() => {
-          handleButtonClick(1);
-        }}
-      >
-        Available shifts
-      </Button>
-      </Box>
-
-     
-      <Card sx={{ minWidth: "50vw", height: "100vw", padding:'0px' }}>
-        <CardContent style={{width:'100%',padding:'0px'}}>
-        {myShifts === 0 ? <MyShifts /> : <AvailableShifts />}
-        </CardContent>
-        <CardActions>
-         
-        </CardActions>
-      </Card>
-      </Box>
+        <Box
+          className="toggle-btn"
+          style={{
+            display: "flex",
+            justifyContent: "start",
+            alignSelf: "start",
+          }}
+        >
+          <Button
+            variant="text"
+            sx={{
+              color: shift === 0 ? "004FB4" : "#A4B8D3",
+              textTransform: "none",
+              fontFamily: "Poppins",
+              fontWeight: "700",
+              fontSize: "1rem",
+            }}
+            onClick={() => {
+              handleButtonClick(0);
+            }}
+          >
+            My shifts
+          </Button>
+          <Button
+            variant="text"
+            sx={{
+              color: shift === 1 ? "004FB4" : "#A4B8D3",
+              textTransform: "none",
+              fontFamily: "Poppins",
+              fontWeight: "700",
+              fontSize: "1rem",
+            }}
+            onClick={() => {
+              handleButtonClick(1);
+            }}
+          >
+            Available shifts
+          </Button>
+        </Box>
+        <Card
+          sx={{
+            minWidth: "50vw",
+            minHeight: "600px",
+            padding: "0px",
+            marginTop: "1rem",
+          }}
+        >
+          <CardContent style={{ width: "100%", padding: "0px" }}>
+            {shift === 0 ? <MyShifts /> : <AvailableShifts />}
+          </CardContent>
+          <CardActions></CardActions>
+        </Card>
+      </div>
     </div>
   );
 }
