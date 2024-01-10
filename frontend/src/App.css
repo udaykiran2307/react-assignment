@@ -3,10 +3,24 @@ body{
  font-family: 'Poppins', sans-serif;
 }
 
-
+.App{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width:'100%'
+}
 
 @media screen and (max-width:720px) {
+  body{
+    width: 100vw;
+  }
   .card{
-    min-width:100% !important;
+    width:90% !important;
+  }
+  .time{
+    
+  }
+  .available-shift-entry{
+    font-size: small !important;
   }
 }

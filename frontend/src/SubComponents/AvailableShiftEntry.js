@@ -1,6 +1,6 @@
 import React from "react";
 import CancelButton from "../CustomButtons/CancelButton";
-
+import "../App.css"
 
 const BookedText = ()=>{
   return (<h4 sx={{color:'#4F6C92'}}>Booked</h4>)
@@ -20,10 +20,11 @@ const AvailableShiftEntry = ({ status, buttonStatus }) => {
         display: "flex",
         justifyContent: "space-between",
         alignItems: "center",
-        padding: "8px",
+        padding: "1rem",
       }}
+      className="available-shift-entry"
     >
-      <div style={{padding:'1rem'}}>12:00-14:00</div>
+      <div style={{}} className="time">12:00-14:00</div>
       <div style={{padding:'2rem', display:'flex',justifyContent:'center',alignItems:'center',gap:'1rem'}}>
          <BookedText/>
         <CancelButton />

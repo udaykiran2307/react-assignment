@@ -6,17 +6,22 @@ const MyShiftEntry = () => {
     <div
       style={{
         height: "3rem",
+        width: "100%",
         display: "flex",
-        padding: "8px",
+        padding: "10px",
         justifyContent: "space-between",
-        alignItems:'center'
+        alignItems: "center",
       }}
     >
-      <div style={{paddingTop:'1rem'}}>
+      <div style={{ paddingTop: "1rem" }}>
         <p>12:00 - 14:00</p>
-        <p style={{ color: "#4F6C92" , marginTop:'-1rem'}}>Helsinki</p>
+        <p style={{ color: "#4F6C92", marginTop: "-1rem" }}>Helsinki</p>
       </div>
-      <CancelButton/>
+      <div
+      style={{padding:'1.5rem'}}
+      >
+        <CancelButton />
+      </div>
     </div>
   );
 };

@@ -10,7 +10,7 @@ const HLine = () => {
 
 const AvailableShifts = () => {
   return (
-    <div style={{ color: "black" }}>
+    <div style={{ color: "black" ,width:'100%'}}>
       <ChooseArea/> 
       <HeadAvailableComponent date='Today'/>
       <AvailableShiftEntry/>

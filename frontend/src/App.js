@@ -19,11 +19,11 @@ function App() {
     <div className="App">
       <div
         style={{
-          margin: "auto",
+
           width: "50%",
           display: "flex",
           flexDirection: "column",
-          justifyContent: "start",
+          justifyContent: "center",
           alignItems: "center",
         }}
         className="card"
@@ -75,6 +75,7 @@ function App() {
             padding: "0px",
             marginTop: "1rem",
           }}
+          className="card"
         >
           <CardContent style={{ width: "100%", padding: "0px" }}>
             {shift === 0 ? <MyShifts /> : <AvailableShifts />}

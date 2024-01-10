@@ -11,7 +11,7 @@ const HeadShiftComponent = ({ date, shifts }) => {
         display: "flex",
         justifyContent: "start",
         alignItems: "center",
-        padding: "8px",
+        padding: "10px",
       }}
     >
       <h4>

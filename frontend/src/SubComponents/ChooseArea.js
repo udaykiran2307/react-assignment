@@ -15,6 +15,7 @@ const ChooseArea = () => {
         justifyContent: "space-around",
         color: "#A4B8D3",
         height: "3rem",
+        width:'100%',
         alignItems: "center",
         fontWeight: "bold",
       }}
