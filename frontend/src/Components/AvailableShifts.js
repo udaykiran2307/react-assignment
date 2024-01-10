@@ -4,10 +4,11 @@ import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
-import { ShiftContext } from "../Context/ShiftContext";
+import { fetchShiftData } from "../Utils/apiCalls";
 import Helsinki from "../Areas/Helsinki";
 import Tampere from "../Areas/Tampere";
 import Turku from "../Areas/Turku";
+
 function CustomTabPanel(props) {
   const { children, value, index, ...other } = props;
 
@@ -42,17 +43,29 @@ function a11yProps(index) {
 }
 
 const AvailableShifts = () => {
-  // const res = useContext(ShiftContext);
-  const { shiftData, setShiftData } = useContext(ShiftContext);
-  const [value, setValue] = React.useState(0);
-  const available = shiftData.filter((e) => e.booked === false);
-  const helsinki = available.filter((e) => e.area === "Helsinki");
-  const tampere = available.filter((e) => e.area === "Tampere");
-  const turku = available.filter((e) => e.area === "Turku");
+  const [shiftData, setShiftData] = useState([]);
+  const [value, setValue] = useState(0);
+  const [helsinki, setHelsinki] = useState([]);
+  const [tampere, setTampere] = useState([]);
+  const [turku, setTurku] = useState([]);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await fetchShiftData();
+      setShiftData(data);
+      console.log(data);
+      const available = data.filter((e) => e.booked === false);
+      setHelsinki(available.filter((e) => e.area === "Helsinki"));
+      setTampere(available.filter((e) => e.area === "Tampere"));
+      setTurku(available.filter((e) => e.area === "Turku"));
+    };
+
+    fetchData();
+  }, []);
 
   return (
     <Box sx={{ width: "100%" }}>

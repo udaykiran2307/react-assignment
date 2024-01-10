@@ -1,5 +1,5 @@
 import React from "react";
-
+import MyShiftEntry from "./MyShiftEntry";
 
 const getCurrentDate = () => {
   const currentDate = new Date();
@@ -42,11 +42,11 @@ const HeadAvailableComponent = ({ date }) => {
         }}
       >
         {date === getCurrentDate() ? (
-          <p style={{fontWeight:'bold'}}>Today</p>
+          <p style={{ fontWeight: "bold" }}>Today</p>
         ) : date === getTomorrowDate() ? (
-          <p style={{fontWeight:'bold'}}>Tommorow</p>
+          <p style={{ fontWeight: "bold" }}>Tommorow</p>
         ) : (
-          <p style={{fontWeight:'bold'}}>{date}</p>
+          <p style={{ fontWeight: "bold" }}>{date}</p>
         )}
       </div>
     </div>
