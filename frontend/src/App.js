@@ -12,7 +12,7 @@ import axios from "axios";
 const fetchShiftData = async () => {
   try{
   const { data } = await axios.get("http://127.0.0.1:8080/shifts");
-  console.log(data);
+  console.log("api call data",data);
   return data;
   }
   catch(e){
@@ -34,11 +34,23 @@ function App() {
   const [shiftData, setShiftData] = useState([]);
   const [errorOccured, setErrorOccured] = useState(false);
 
-  // useEffect(() => {
-  //   const result = fetchShiftData();
-  //   if(!result)setErrorOccured(true);
-  //   else setShiftData(result);
-  // }, []);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const result = await fetchShiftData();
+        if (result) {
+          setShiftData(result);
+        } else {
+          setErrorOccured(true);
+        }
+      } catch (error) {
+        setErrorOccured(true);
+      }
+    };
+
+    fetchData();
+  }, []);
+  
 
   const handleButtonClick = (val) => {
     setShift(val);

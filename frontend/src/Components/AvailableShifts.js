@@ -45,12 +45,15 @@ function a11yProps(index) {
 }
 
 const getAvailDataFromShift = (data) => {
-  // console.log(typeof(data))
+  console.log("sdasfa",data);
+  
   if(!data || data.length === 0)return {};
+ 
   const available = data.filter((e) => e.booked === false);
   const helsinki = available.filter((e) => e.area === "Helsinki");
   const tampere = available.filter((e) => e.area === "Tampere");
   const turku = available.filter((e) => e.area === "Turku");
+  console.log(available, helsinki, tampere, turku)
   return { available, helsinki, tampere, turku };
 };
 
@@ -63,22 +66,18 @@ const HLine = () => {
 };
 
 const AvailableShifts = () => {
-  const [availShiftData, setAvailShiftData] = useState([]);
-  const { shiftData, setShiftData } = useContext(ShiftContext);
-  const data = getAvailDataFromShift(shiftData);
+  
+  // const res = useContext(ShiftContext);
+  const {shiftData,setShiftData} = useContext(ShiftContext);
   const [value, setValue] = React.useState(0);
-  const [helsinki, setHelsinki] = useState([]);
-  const [tampere, setTampere] = useState([]);
-  const [turku, setTurku] = useState([]);
+  // const [helsinki, setHelsinki] = useState([]);
+  // const [tampere, setTampere] = useState([]);
+  // const [turku, setTurku] = useState([]);
+  const available = shiftData.filter((e) => e.booked === false);
+  const helsinki = available.filter((e) => e.area === "Helsinki");
+  const tampere = available.filter((e) => e.area === "Tampere");
+  const turku = available.filter((e) => e.area === "Turku");
 
-  // useEffect(() => {
-  //   const { available, helsinki, tampere, turku } =
-  //   getAvailDataFromShift(shiftData);
-  //   setAvailShiftData(available);
-  //   setHelsinki(helsinki);
-  //   setTampere(tampere);
-  //   setTurku(turku);
-  // }, [shiftData]);
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
@@ -110,13 +109,13 @@ const AvailableShifts = () => {
         </Tabs>
       </Box>
       <CustomTabPanel value={value} index={0}>
-        <Helsinki data={helsinki}/>
+        <Helsinki data={helsinki} />
       </CustomTabPanel>
       <CustomTabPanel value={value} index={1}>
-        <Tampere data={tampere}/>
+        <Tampere  data={tampere}/>
       </CustomTabPanel>
       <CustomTabPanel value={value} index={2}>
-        <Turku data={turku}/>
+        <Turku  data={turku}/>
       </CustomTabPanel>
     </Box>
   );
