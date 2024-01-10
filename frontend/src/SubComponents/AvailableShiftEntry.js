@@ -1,15 +1,18 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import CancelButton from "../CustomButtons/CancelButton";
 import "../App.css";
 import HeadAvailableComponent from "./HeadAvailableComponent";
 import BookButton from "../CustomButtons/BookButton";
 import axios from "axios";
 import { ShiftContext } from "../Context/ShiftContext";
+import { isOverlapping } from "../Utils/getTimeAndDate";
+import LoadingButton from "../CustomButtons/LoadingButton";
+import LoadingCancelBtn from "../CustomButtons/LoadingCancelBtn";
 const BookedText = () => {
   return <h4 sx={{ color: "#4F6C92" }}>Booked</h4>;
 };
 const Overlapping = () => {
-  return <h2 sx={{ color: "#E2006A" }}>Overlapping</h2>;
+  return <h4 sx={{ color: "#E2006A" }}>Overlapping</h4>;
 };
 const HLine = () => {
   return (
@@ -68,17 +71,34 @@ const getUpdatedDataAfterCancel = (id, shiftData) => {
 
 const AvailableShiftEntry = ({ date, items }) => {
   const { shiftData, setShiftData } = useContext(ShiftContext);
+  // const[myShifts,setMyShifts] = useState([]);
+  const[bookloading,setBookLoading]=useState(false);
+  const[cancelLoading,setCancelLoading]=useState(false);
+
   const handleCancel = (id) => {
+    setCancelLoading(true);
     cancelBooking(id);
     const updatedData = getUpdatedDataAfterCancel(id, shiftData);
+    setCancelLoading(false);
     setShiftData(updatedData);
+    
   };
 
   const handleBooking = (id) => {
+    setBookLoading(true);
     postBooking(id);
     const updatedData = getUpdatedDataAfterBook(id, shiftData);
     setShiftData(updatedData);
+    setBookLoading(false);
   };
+
+  // const TextStatus = (startTime,endTime)=>{
+       
+  //      if(isOverlapping(myShifts,startTime,endTime)){
+  //       return <Overlapping/>
+  //      }
+  //      else return <div></div>;
+  // }
 
   return (
     <div>
@@ -120,10 +140,11 @@ const AvailableShiftEntry = ({ date, items }) => {
                 gap: "1rem",
               }}
             >
-              {e.booked === true ? <BookedText /> : ""}
-              {e.booked === true ? (
+              {e.booked === true ? <BookedText /> : isOverlapping(shiftData,e.startTime,e.endTime)?<Overlapping/>:""}
+              {e.booked === true ? (cancelLoading?<LoadingCancelBtn/>:
                 <CancelButton handleCancel={handleCancel} id={e.id} />
               ) : (
+                bookloading?<LoadingButton/>:
                 <BookButton handleBooking={handleBooking} id={e.id} />
               )}
               {/* Placeholder for CancelButton component */}

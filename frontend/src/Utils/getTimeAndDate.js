@@ -74,6 +74,37 @@ function groupOfMyShiftData(data) {
 
 
 
+  const isOverlapping = (shiftData, startTime, endTime) => {
+   
+    const inputStartTime = typeof startTime === 'number' ? startTime : new Date(startTime).getTime();
+    const inputEndTime = typeof endTime === 'number' ? endTime : new Date(endTime).getTime();
+   
+    const myShiftData = shiftData.map((e)=>e.booked === true);
+    
+    if(!myShiftData)return false;
+    
+    for (const shift of myShiftData) {
+      const shiftStartTime = shift.startTime;
+      const shiftEndTime = shift.endTime;
+  
+     
+      if (
+        (inputStartTime >= shiftStartTime && inputStartTime < shiftEndTime) ||
+        (inputEndTime > shiftStartTime && inputEndTime <= shiftEndTime) ||
+        (inputStartTime <= shiftStartTime && inputEndTime >= shiftEndTime)
+      ) {
+        
+        return true;
+      }
+    }
+  
+    
+    return false;
+  };
+  
+ 
 
 
-module.exports = { getTimeAndDate, groupByDay,groupOfMyShiftData };
+
+
+module.exports = { getTimeAndDate, groupByDay,groupOfMyShiftData,isOverlapping };
