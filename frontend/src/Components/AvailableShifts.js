@@ -1,7 +1,4 @@
 import React, { useContext, useEffect, useState } from "react";
-import HeadAvailableComponent from "../SubComponents/HeadAvailableComponent";
-import AvailableShiftEntry from "../SubComponents/AvailableShiftEntry";
-import ChooseArea from "../SubComponents/ChooseArea";
 import PropTypes from "prop-types";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
@@ -44,35 +41,10 @@ function a11yProps(index) {
   };
 }
 
-const getAvailDataFromShift = (data) => {
-  console.log("sdasfa",data);
-  
-  if(!data || data.length === 0)return {};
- 
-  const available = data.filter((e) => e.booked === false);
-  const helsinki = available.filter((e) => e.area === "Helsinki");
-  const tampere = available.filter((e) => e.area === "Tampere");
-  const turku = available.filter((e) => e.area === "Turku");
-  console.log(available, helsinki, tampere, turku)
-  return { available, helsinki, tampere, turku };
-};
-
-const HLine = () => {
-  return (
-    <div
-      style={{ width: "100%", height: "1px", backgroundColor: "#F1F4F8" }}
-    ></div>
-  );
-};
-
 const AvailableShifts = () => {
-  
   // const res = useContext(ShiftContext);
-  const {shiftData,setShiftData} = useContext(ShiftContext);
+  const { shiftData, setShiftData } = useContext(ShiftContext);
   const [value, setValue] = React.useState(0);
-  // const [helsinki, setHelsinki] = useState([]);
-  // const [tampere, setTampere] = useState([]);
-  // const [turku, setTurku] = useState([]);
   const available = shiftData.filter((e) => e.booked === false);
   const helsinki = available.filter((e) => e.area === "Helsinki");
   const tampere = available.filter((e) => e.area === "Tampere");
@@ -112,27 +84,13 @@ const AvailableShifts = () => {
         <Helsinki data={helsinki} />
       </CustomTabPanel>
       <CustomTabPanel value={value} index={1}>
-        <Tampere  data={tampere}/>
+        <Tampere data={tampere} />
       </CustomTabPanel>
       <CustomTabPanel value={value} index={2}>
-        <Turku  data={turku}/>
+        <Turku data={turku} />
       </CustomTabPanel>
     </Box>
   );
 };
 
 export default AvailableShifts;
-/*
- <ChooseArea/> 
-      <HeadAvailableComponent date='Today'/>
-      <AvailableShiftEntry/>
-      <HLine/>
-      <AvailableShiftEntry/>
-      <HLine/>
-      <HeadAvailableComponent date='Tommorow'/>
-       <AvailableShiftEntry/>
-       <HLine/>
-       <HeadAvailableComponent date='September 21'/>
-       <AvailableShiftEntry/>
-       <HLine/>
-*/

@@ -1,6 +1,11 @@
 import { Button } from "@mui/material";
 
-const BookButton = () => {
+const BookButton = ({id,handleBooking}) => {
+    
+   const handleClick=()=>{
+       handleBooking(id);
+   }
+
     return (
       <Button
         variant="outlined"
@@ -13,6 +18,7 @@ const BookButton = () => {
           borderRadius: "1rem",
           fontWeight:'bold'
         }}
+        onClick={handleClick}
       >
         Book
       </Button>

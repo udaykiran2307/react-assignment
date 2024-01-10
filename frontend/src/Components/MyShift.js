@@ -1,31 +1,45 @@
 import React, { useContext } from "react";
 import HeadShiftComponent from "../SubComponents/HeadShiftComponent";
 import MyShiftEntry from "../SubComponents/MyShiftEntry";
-import CancelButton from "../CustomButtons/CancelButton";
-import BookButton from "../CustomButtons/BookButton";
-import LoadingButton from "../CustomButtons/LoadingButton";
-import BlurBookButton from "../CustomButtons/blurBookButton";
-import BlurCancelButton from "../CustomButtons/BlurCancelButton";
 import { ShiftContext } from "../Context/ShiftContext";
+import { groupByDay } from "../Utils/getTimeAndDate";
 
 const HLine = () => {
-  return <div style={{ width: "100%", height: "1px", backgroundColor: "#F1F4F8" }}></div>;
+  return (
+    <div
+      style={{ width: "100%", height: "1px", backgroundColor: "#F1F4F8" }}
+    ></div>
+  );
 };
 
+const getDetailsArray = (shiftData) => {
+  console.log("pre", shiftData);
+  const myShiftsArr = shiftData.filter((e) => e.booked === true);
+  console.log("post", myShiftsArr);
+  const myShifteArrGroupBydate = groupByDay(myShiftsArr);
+  return myShifteArrGroupBydate;
+};
 
 const MyShifts = () => {
+  const { shiftData, setShiftData } = useContext(ShiftContext);
+  const myShiftArr = getDetailsArray(shiftData);
+  console.log("myShift", myShiftArr);
 
-  const {shiftData,setShiftData} = useContext(ShiftContext);
   return (
     <div style={{ width: "100%" }}>
       <HeadShiftComponent date={"Today"} shifts={""} />
       <MyShiftEntry />
-       <HLine/>
+      <HLine />
       <MyShiftEntry />
-      <HLine/>
+      <HLine />
       <HeadShiftComponent date={"Tommorow"} shift={""} />
       <MyShiftEntry />
-      <HLine/>
+      <HLine />
+      <div style={{ width: "100%" }}>
+        {myShiftArr.map((e) => (
+          <MyShiftEntry date={e.date} items={e.items} />
+        ))}
+      </div>
     </div>
   );
 };

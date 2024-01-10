@@ -1,5 +1,5 @@
 import React from "react";
-import CustomButton from "../Components/CustomButton";
+
 
 const getCurrentDate = () => {
   const currentDate = new Date();
@@ -42,11 +42,11 @@ const HeadAvailableComponent = ({ date }) => {
         }}
       >
         {date === getCurrentDate() ? (
-          <h4>Today</h4>
+          <p style={{fontWeight:'bold'}}>Today</p>
         ) : date === getTomorrowDate() ? (
-          <h4>Tommorow</h4>
+          <p style={{fontWeight:'bold'}}>Tommorow</p>
         ) : (
-          <h4>{date}</h4>
+          <p style={{fontWeight:'bold'}}>{date}</p>
         )}
       </div>
     </div>

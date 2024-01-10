@@ -7,8 +7,8 @@ const Tampere = ({data}) => {
 
   return (
     <div style={{ width: "100%" }}>
-      {dateArr.map((e) => (
-        <AvailableShiftEntry date={e.date} items={e.items} />
+      {dateArr.map((e,i) => (
+        <AvailableShiftEntry key={i} date={e.date} items={e.items} />
       ))}
     </div>
   );

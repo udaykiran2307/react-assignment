@@ -1,7 +1,8 @@
 import React from "react";
 import CancelButton from "../CustomButtons/CancelButton";
 
-const MyShiftEntry = () => {
+const MyShiftEntry = ({date,items}) => {
+  
   return (
     <div
       style={{
@@ -14,7 +15,7 @@ const MyShiftEntry = () => {
       }}
     >
       <div style={{ paddingTop: "1rem" }}>
-        <p>12:00 - 14:00</p>
+        <p>12:24-15:24</p>
         <p style={{ color: "#4F6C92", marginTop: "-1rem" }}>Helsinki</p>
       </div>
       <div
