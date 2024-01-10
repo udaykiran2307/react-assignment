@@ -24,7 +24,7 @@ const MyShifts = () => {
   const { shiftData, setShiftData } = useContext(ShiftContext);
   const myShiftArr = getDetailsArray(shiftData);
   console.log("myShift", myShiftArr);
-  if(myShiftArr){
+  if(!myShiftArr || myShiftArr.length === 0){
     return(<div style={{margin:'auto'}}>
       Add shifts from the available shifts
     </div>)

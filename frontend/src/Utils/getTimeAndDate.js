@@ -79,7 +79,7 @@ function groupOfMyShiftData(data) {
     const inputStartTime = typeof startTime === 'number' ? startTime : new Date(startTime).getTime();
     const inputEndTime = typeof endTime === 'number' ? endTime : new Date(endTime).getTime();
    
-    const myShiftData = shiftData.map((e)=>e.booked === true);
+    const myShiftData = shiftData.filter((e)=>e.booked === true);
     
     if(!myShiftData)return false;
     
