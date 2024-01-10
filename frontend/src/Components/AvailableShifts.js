@@ -45,10 +45,10 @@ const AvailableShifts = () => {
   // const res = useContext(ShiftContext);
   const { shiftData, setShiftData } = useContext(ShiftContext);
   const [value, setValue] = React.useState(0);
-  const available = shiftData.filter((e) => e.booked === false);
-  const helsinki = available.filter((e) => e.area === "Helsinki");
-  const tampere = available.filter((e) => e.area === "Tampere");
-  const turku = available.filter((e) => e.area === "Turku");
+  // const available = shiftData.filter((e) => e.booked === false);
+  const helsinki = shiftData.filter((e) => e.area === "Helsinki");
+  const tampere = shiftData.filter((e) => e.area === "Tampere");
+  const turku = shiftData.filter((e) => e.area === "Turku");
 
   const handleChange = (event, newValue) => {
     setValue(newValue);

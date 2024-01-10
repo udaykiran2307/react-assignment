@@ -19,67 +19,74 @@ const HLine = () => {
   );
 };
 
-const postBooking = async(id)=>{
-      try{
-       const res = await axios.post(`http://127.0.0.1:8080/shifts/${id}/book`);
-       console.log("successful");
-       
-      }catch(err){
-        console.log("srafe",err);
-      }
-}
-const cancelBooking = async(id)=>{
-  try{
-   const res = await axios.post(`http://127.0.0.1:8080/shifts/${id}/cancel`);
-   console.log("successful");
-   
-  }catch(err){
-    console.log("srafe",err);
+const postBooking = async (id) => {
+  try {
+    const res = await axios.post(`http://127.0.0.1:8080/shifts/${id}/book`);
+    console.log("successful");
+  } catch (err) {
+    console.log("srafe", err);
   }
-}
+};
+const cancelBooking = async (id) => {
+  try {
+    const res = await axios.post(`http://127.0.0.1:8080/shifts/${id}/cancel`);
+    console.log("successful");
+  } catch (err) {
+    console.log("srafe", err);
+  }
+};
 
-const getUpdatedDataAfterBook = (id,shiftData)=>{
-     shiftData.forEach((e)=>{
-      if(e.id === id){
-        e.booked = true;
-        return;
-      }
-     })
-}
+const getUpdatedDataAfterBook = (id, shiftData) => {
+  const shiftIndex = shiftData.findIndex((shift) => shift.id === id);
 
-const getUpdatedDataAfterCancel = (id,shiftData) =>{
-  shiftData.forEach((e)=>{
-    if(e.id === id){
-      e.booked = false;
-      return;
-    }
-   })
-}
+  if (shiftIndex !== -1) {
+    const updatedShiftData = [...shiftData];
+    updatedShiftData[shiftIndex] = {
+      ...updatedShiftData[shiftIndex],
+      booked: true,
+    };
+
+    return updatedShiftData;
+  }
+  return shiftData;
+};
+
+const getUpdatedDataAfterCancel = (id, shiftData) => {
+  const shiftIndex = shiftData.findIndex((shift) => shift.id === id);
+
+  if (shiftIndex !== -1) {
+    const updatedShiftData = [...shiftData];
+    updatedShiftData[shiftIndex] = {
+      ...updatedShiftData[shiftIndex],
+      booked: false,
+    };
+
+    return updatedShiftData;
+  }
+  return shiftData;
+};
 
 const AvailableShiftEntry = ({ date, items }) => {
-  const  {shiftData,setShiftData}= useContext(ShiftContext);
-  const handleCancel = (id)=>{
-     cancelBooking(id);
-      getUpdatedDataAfterCancel(id,shiftData);
-     setShiftData(shiftData);
-  }
-  
-  const handleBooking = (id)=>{
-    postBooking(id);
-    getUpdatedDataAfterBook(id,shiftData);
-    setShiftData(shiftData);
-  }
+  const { shiftData, setShiftData } = useContext(ShiftContext);
+  const handleCancel = (id) => {
+    cancelBooking(id);
+    const updatedData = getUpdatedDataAfterCancel(id, shiftData);
+    setShiftData(updatedData);
+  };
 
+  const handleBooking = (id) => {
+    postBooking(id);
+    const updatedData = getUpdatedDataAfterBook(id, shiftData);
+    setShiftData(updatedData);
+  };
 
   return (
     <div>
       <HeadAvailableComponent date={date} />
       {items.map((e) => (
-        <div
-        key={e.id}
-        >
+        <div key={e.id}>
           <div
-            key={e.id} 
+            key={e.id}
             style={{
               width: "100%",
               height: "2rem",
@@ -113,13 +120,13 @@ const AvailableShiftEntry = ({ date, items }) => {
                 gap: "1rem",
               }}
             >
-              {
-                 e.booked === true?<BookedText/>:""
-              }
-              {
-                e.booked === true ?<CancelButton handleCancel={handleCancel} id={e.id}/>:<BookButton handleBooking={handleBooking} id={e.id}/>
-              }
-               {/* Placeholder for CancelButton component */}
+              {e.booked === true ? <BookedText /> : ""}
+              {e.booked === true ? (
+                <CancelButton handleCancel={handleCancel} id={e.id} />
+              ) : (
+                <BookButton handleBooking={handleBooking} id={e.id} />
+              )}
+              {/* Placeholder for CancelButton component */}
             </div>
           </div>
           <HLine />

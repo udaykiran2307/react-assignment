@@ -1,6 +1,6 @@
 import React from "react";
 
-const HeadShiftComponent = ({ date, shifts }) => {
+const HeadShiftComponent = ({ date, shifts ,hours}) => {
   return (
     <div
       style={{
@@ -24,7 +24,7 @@ const HeadShiftComponent = ({ date, shifts }) => {
             color: "#4F6C92",
           }}
         >
-          {0} shifts, {4}h{" "}
+          {shifts} shifts, {hours}h{" "}
         </span>
       </h4>
     </div>

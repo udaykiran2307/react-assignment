@@ -10,24 +10,18 @@ import { ShiftContext } from "./Context/ShiftContext";
 import axios from "axios";
 
 const fetchShiftData = async () => {
-  try{
-  const { data } = await axios.get("http://127.0.0.1:8080/shifts");
-  console.log("api call data",data);
-  return data;
-  }
-  catch(e){
+  try {
+    const { data } = await axios.get("http://127.0.0.1:8080/shifts");
+    console.log("api call data", data);
+    return data;
+  } catch (e) {
     return false;
   }
-  
 };
 
-const ErrorHandler = ()=>{
-  return (<div>
-    Error Occured in fetching data 
-  </div>)
-}
-
-
+const ErrorHandler = () => {
+  return <h1>Error Occured in fetching data</h1>;
+};
 
 function App() {
   const [shift, setShift] = useState(0);
@@ -50,7 +44,6 @@ function App() {
 
     fetchData();
   }, []);
-  
 
   const handleButtonClick = (val) => {
     setShift(val);
@@ -117,11 +110,14 @@ function App() {
             }}
             className="card"
           >
-           
             <CardContent style={{ width: "100%", padding: "0px" }}>
-            {
-              errorOccured?<ErrorHandler/>:(shift === 0 ? <MyShifts /> : <AvailableShifts />)
-            }
+              {errorOccured ? (
+                <ErrorHandler />
+              ) : shift === 0 ? (
+                <MyShifts />
+              ) : (
+                <AvailableShifts />
+              )}
               {}
             </CardContent>
             <CardActions></CardActions>

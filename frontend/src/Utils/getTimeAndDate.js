@@ -21,37 +21,59 @@ const getTimeAndDate = (timestamp) => {
 
   let formattedTime = hours + ":" + minutes.substring(0, 2);
 
-  return { date: month + " " + day, time: formattedTime };
+  return  formattedTime ;
 };
 
 const groupByDay = (data) => {
-    const groupedData = {};
+  const groupedData = {};
 
-    
-    data.forEach((item) => {
-      // Convert the timestamp to a date
-      const date = new Date(item.startTime);
-  
-      // Format the date as "month day" (e.g., "September 21")
-      const formattedDate = new Intl.DateTimeFormat('en-US', {
-        month: 'long',
-        day: 'numeric',
-      }).format(date);
-  
-      // Check if the formatted date is already a key in the groupedData object
-      if (groupedData[formattedDate]) {
-        // If the key exists, push the current item to the array
-        groupedData[formattedDate].items.push(item);
-      } else {
-        // If the key doesn't exist, create a new array with the current item
-        groupedData[formattedDate] = { date: formattedDate, items: [item] };
-      }
-    });
-  
-    // Convert the object values to an array
-    const resultArray = Object.values(groupedData);
-  
-    return resultArray;
+  data.forEach((item) => {
+    const date = new Date(item.startTime);
+
+    const formattedDate = new Intl.DateTimeFormat("en-US", {
+      month: "long",
+      day: "numeric",
+    }).format(date);
+
+    if (groupedData[formattedDate]) {
+      groupedData[formattedDate].items.push(item);
+    } else {
+      groupedData[formattedDate] = { date: formattedDate, items: [item] };
+    }
+  });
+
+  const resultArray = Object.values(groupedData);
+
+  return resultArray;
 };
 
-module.exports={getTimeAndDate,groupByDay}
+function groupOfMyShiftData(data) {
+  const groupedData = {};
+
+  data.forEach(item => {
+    const dateKey = new Date(item.startTime).toLocaleDateString('en-US', {
+      month: 'long',
+      day: 'numeric'
+    });
+
+    if (!groupedData[dateKey]) {
+      groupedData[dateKey] = {
+        date: dateKey,
+        items: [],
+        totalTime: 0
+      };
+    }
+
+    const durationInHours = (item.endTime - item.startTime) / (1000 * 60 * 60);
+    groupedData[dateKey].items.push(item);
+    groupedData[dateKey].totalTime += durationInHours;
+  });
+
+  return Object.values(groupedData);
+}
+
+
+
+
+
+module.exports = { getTimeAndDate, groupByDay,groupOfMyShiftData };

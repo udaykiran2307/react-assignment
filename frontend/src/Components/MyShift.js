@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import HeadShiftComponent from "../SubComponents/HeadShiftComponent";
 import MyShiftEntry from "../SubComponents/MyShiftEntry";
 import { ShiftContext } from "../Context/ShiftContext";
-import { groupByDay } from "../Utils/getTimeAndDate";
+import { groupByDay, groupOfMyShiftData } from "../Utils/getTimeAndDate";
 
 const HLine = () => {
   return (
@@ -16,7 +16,7 @@ const getDetailsArray = (shiftData) => {
   console.log("pre", shiftData);
   const myShiftsArr = shiftData.filter((e) => e.booked === true);
   console.log("post", myShiftsArr);
-  const myShifteArrGroupBydate = groupByDay(myShiftsArr);
+  const myShifteArrGroupBydate = groupOfMyShiftData(myShiftsArr);
   return myShifteArrGroupBydate;
 };
 
@@ -27,17 +27,17 @@ const MyShifts = () => {
 
   return (
     <div style={{ width: "100%" }}>
-      <HeadShiftComponent date={"Today"} shifts={""} />
+      {/* <HeadShiftComponent date={"Today"} shifts={""} />
       <MyShiftEntry />
       <HLine />
       <MyShiftEntry />
       <HLine />
       <HeadShiftComponent date={"Tommorow"} shift={""} />
       <MyShiftEntry />
-      <HLine />
+      <HLine /> */}
       <div style={{ width: "100%" }}>
         {myShiftArr.map((e) => (
-          <MyShiftEntry date={e.date} items={e.items} />
+          <MyShiftEntry date={e.date} items={e.items} hours={e.totalTimeTaken} />
         ))}
       </div>
     </div>

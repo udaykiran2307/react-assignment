@@ -1,7 +1,13 @@
 import { Button } from "@mui/material";
 import React from "react";
 
-const CancelButton = () => {
+const CancelButton = ({id,handleCancel}) => {
+  
+  const handleClick=()=>{
+    handleCancel(id);
+}
+
+
   return (
     <Button
       variant="outlined"
@@ -14,6 +20,7 @@ const CancelButton = () => {
         borderRadius: "1rem",
         fontWeight:'bold'
       }}
+      onClick={handleClick}
     >
       Cancel
     </Button>
