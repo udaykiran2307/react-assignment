@@ -26,7 +26,7 @@ const HLine = () => {
 const postBooking = async (id) => {
   try {
     const res = await axios.post(`http://127.0.0.1:8080/shifts/${id}/book`);
-    console.log("successful");
+    // console.log("successful");
   } catch (err) {
     console.log("srafe", err);
   }
@@ -34,7 +34,7 @@ const postBooking = async (id) => {
 const cancelBooking = async (id) => {
   try {
     const res = await axios.post(`http://127.0.0.1:8080/shifts/${id}/cancel`);
-    console.log("successful");
+    // console.log("successful");
   } catch (err) {
     console.log("srafe", err);
   }
@@ -104,7 +104,7 @@ const AvailableShiftEntry = ({ date, items }) => {
     <div>
       <HeadAvailableComponent date={date} />
       {items.map((e) => (
-        <div key={e.id}>
+        <div key={e.id} style={{width:'100%'}}>
           <div
             key={e.id}
             style={{
@@ -119,7 +119,7 @@ const AvailableShiftEntry = ({ date, items }) => {
             }}
             className="available-shift-entry"
           >
-            <div style={{}} className="time">
+            <div style={{width:'100%'}} className="time">
               {`${new Date(e.startTime).toLocaleTimeString("en-US", {
                 hour: "2-digit",
                 minute: "2-digit",

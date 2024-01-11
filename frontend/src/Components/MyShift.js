@@ -13,9 +13,9 @@ const HLine = () => {
 };
 
 const getDetailsArray = (shiftData) => {
-  console.log("pre", shiftData);
+  // console.log("pre", shiftData);
   const myShiftsArr = shiftData.filter((e) => e.booked === true);
-  console.log("post", myShiftsArr);
+  // console.log("post", myShiftsArr);
   const myShifteArrGroupBydate = groupOfMyShiftData(myShiftsArr);
   return myShifteArrGroupBydate;
 };
@@ -23,7 +23,7 @@ const getDetailsArray = (shiftData) => {
 const MyShifts = () => {
   const { shiftData, setShiftData } = useContext(ShiftContext);
   const myShiftArr = getDetailsArray(shiftData);
-  console.log("myShift", myShiftArr);
+  // console.log("myShift", myShiftArr);
   if(!myShiftArr || myShiftArr.length === 0){
     return(<div style={{margin:'auto'}}>
       Add shifts from the available shifts

@@ -35,9 +35,9 @@ const getUpdatedDataAfterCancel = (id, shiftData) => {
 };
 const MyShiftEntry = ({ date, items, hours }) => {
   const { shiftData, setShiftData } = useContext(ShiftContext);
-  console.log("date-items", date, items);
+  // console.log("date-items", date, items);
   const handleCancel = (id) => {
-    console.log("clicked");
+    // console.log("clicked");
     cancelBooking(id);
     const updatedData = getUpdatedDataAfterCancel(id, shiftData);
     setShiftData(updatedData);
